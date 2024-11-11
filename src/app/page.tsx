@@ -2,6 +2,22 @@
 
 import { useEffect } from "react";
 
+declare global {
+  interface Window {
+    voiceflow: {
+      chat: {
+        load: (config: {
+          verify: { projectID: string };
+          url: string;
+          versionID: string;
+          render: { mode: string; target: HTMLElement };
+          autostart: boolean;
+        }) => void;
+      };
+    };
+  }
+}
+
 export default function Home() {
   useEffect(() => {
     const script = document.createElement("script");
