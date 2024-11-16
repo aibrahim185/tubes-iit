@@ -42,7 +42,7 @@ export default function ChatBot() {
           ) as HTMLElement;
           if (chatbotTarget && !chatbotTarget.shadowRoot) {
             window.voiceflow.chat.load({
-              verify: { projectID: "6731f3769f1273d401e4ddf7" },
+              verify: { projectID: "673809d473a58eac628bab0d" },
               url: "https://general-runtime.voiceflow.com",
               versionID: "production",
               assistant: {
