@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 declare global {
   interface Window {
@@ -23,42 +23,32 @@ declare global {
   }
 }
 
-export default function ChatBot() {
-  const [isScriptLoaded, setIsScriptLoaded] = useState(false);
-
+const VoiceflowChatWidget: React.FC = () => {
   useEffect(() => {
-    if (!isScriptLoaded && !window.voiceflow?.isInitialized) {
+    const loadVoiceflowChatWidget = () => {
       const script = document.createElement("script");
-      script.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
       script.type = "text/javascript";
-      script.async = true;
-
       script.onload = () => {
-        setIsScriptLoaded(true);
-        if (window.voiceflow) {
-          window.voiceflow.isInitialized = true;
-          const chatbotTarget = document.getElementById(
-            "chatbot"
-          ) as HTMLElement;
-          if (chatbotTarget && !chatbotTarget.shadowRoot) {
-            window.voiceflow.chat.load({
-              verify: { projectID: "673809d473a58eac628bab0d" },
-              url: "https://general-runtime.voiceflow.com",
-              versionID: "production",
-              assistant: {
-                title: "IIT Bot",
-                description: "ini chatbot IIT",
-                image: "logo.png",
-                color: "#e3af02",
-              },
-            });
-          }
-        }
+        window.voiceflow?.chat?.load({
+          verify: { projectID: "673809d473a58eac628bab0d" },
+          url: "https://general-runtime.voiceflow.com",
+          versionID: "production",
+          assistant: {
+            title: "IIT Bot",
+            description: "ini chatbot IIT",
+            image: "logo.png",
+            color: "#e3af02",
+          },
+        });
       };
-
+      script.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
       document.body.appendChild(script);
-    }
-  }, [isScriptLoaded]);
+    };
 
-  return <div id="chatbot"></div>;
-}
+    loadVoiceflowChatWidget();
+  }, []);
+
+  return null; // The widget is script-based, so no JSX content is needed.
+};
+
+export default VoiceflowChatWidget;
