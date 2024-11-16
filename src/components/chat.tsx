@@ -35,7 +35,7 @@ const VoiceflowChatWidget: React.FC = () => {
           versionID: "production",
           assistant: {
             title: "IIT Bot",
-            description: "ini chatbot IIT",
+            description: "IIT intelligent virtual assistant",
             image: "logo.png",
             color: "#e3af02",
           },
